@@ -109,7 +109,11 @@ button {
   transition: 0.5s;
   letter-spacing: 0.5px;
 }
-
+@media (max-width: 767px){
+  .update, .delete{
+    font-size: 9px;
+  }
+}
 button:hover {
   background-color: #0a49f6;
   letter-spacing: 2px;
@@ -136,7 +140,7 @@ table {
 }
 @media (max-width: 767px) {
     .prod-info{
-        font-size: 13px;
+        font-size: 9px;
     }
 }
 
@@ -149,6 +153,12 @@ th {
   padding: 5px;
 }
 
+@media (max-width: 767px) {
+  td,
+  th {
+    padding: 0px;
+  }
+}
 
 /* =============================================================================== */
 .delete:hover {

@@ -42,6 +42,7 @@ if (localStorage.getItem("products") == null) {
   productsList = JSON.parse(localStorage.getItem("products"));
   showData(productsList);
 }
+/* ---------------------------------- START CRUDS --------------------------------- */
 /* ---------------------------------- Creat --------------------------------- */
 submit.onclick = function () {
   var products = {
@@ -93,8 +94,8 @@ function showData(productsContainer) {
         <td>${productsContainer[i].discount}</td>
         <td>${productsContainer[i].total}</td>
         <td>${productsContainer[i].category}</td>
-        <td><button onclick="upadteProduct(${i})">Update</button></td>
-        <td><button onclick="deleteElement(${i})">Delete</button></td>
+        <td><button class="update" onclick="upadteProduct(${i})">Update</button></td>
+        <td><button class="delete" onclick="deleteElement(${i})">Delete</button></td>
         </tr>`;
   }
   document.getElementById("tbody").innerHTML = table;
@@ -105,31 +106,6 @@ function showData(productsContainer) {
   } else {
     deleteall.innerHTML = ``;
   }
-}
-/* ----------------------------- Delete Element ----------------------------- */
-function deleteElement(productIndex) {
-  productsList.splice(productIndex, 1);
-  //new list in localstorage -update-
-  localStorage.setItem("products", JSON.stringify(productsList));
-  showData(productsList);
-}
-/* ------------------------------- Delete All ------------------------------- */
-function deleteAll() {
-  productsList.splice(0);
-  localStorage.clear();
-  showData(productsList);
-}
-/* --------------------------------- Search --------------------------------- */
-function searchProducts(letter) {
-  var searchProducts = [];
-  for (var i = 0; i < productsList.length; i++) {
-    if (
-      productsList[i].title.toLowerCase().includes(letter.toLowerCase()) == true
-    ) {
-      searchProducts.push(productsList[i]);
-    }
-  }
-  showData(searchProducts);
 }
 /* --------------------------------- Update --------------------------------- */
 function upadteProduct(productIndex) {
@@ -149,4 +125,29 @@ function upadteProduct(productIndex) {
     behavior: "smooth",
   });
   getTotal();
+}
+/* --------------------------------- Delete --------------------------------- */
+function deleteElement(productIndex) {
+  productsList.splice(productIndex, 1);
+  //new list in localstorage -update-
+  localStorage.setItem("products", JSON.stringify(productsList));
+  showData(productsList);
+}
+// Delete All
+function deleteAll() {
+  productsList.splice(0);
+  localStorage.clear();
+  showData(productsList);
+}
+/* --------------------------------- Search --------------------------------- */
+function searchProducts(letter) {
+  var searchProducts = [];
+  for (var i = 0; i < productsList.length; i++) {
+    if (
+      productsList[i].title.toLowerCase().includes(letter.toLowerCase()) == true
+    ) {
+      searchProducts.push(productsList[i]);
+    }
+  }
+  showData(searchProducts);
 }
